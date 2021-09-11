@@ -1,3 +1,3 @@
-# molecules
+# Dramatic
 
-Editor focus on link contents
+Editor can link with other contents
