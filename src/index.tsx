@@ -1,4 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AppComp from './components/app/AppComp';
 
-ReactDOM.render(<div>Hello react!</div>, document.getElementById('root'));
+ReactDOM.render(<AppComp />, document.getElementById('root'));

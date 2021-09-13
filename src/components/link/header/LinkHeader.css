@@ -1,0 +1,13 @@
+.link-header {
+  display: flex;
+  justify-content: start;
+  width: 14%;
+}
+
+.link-header-label {
+  color: snow;
+  font-size: 18pt;
+  font-weight: bold;
+  margin-top: 1px;
+  margin-left: 2px;
+}
