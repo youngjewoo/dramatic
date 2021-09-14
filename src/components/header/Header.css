@@ -1,10 +1,10 @@
-.link-header {
+.header {
   display: flex;
   justify-content: start;
   width: 14%;
 }
 
-.link-header-label {
+.header-label {
   color: snow;
   font-size: 18pt;
   font-weight: bold;

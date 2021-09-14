@@ -10,7 +10,7 @@ const AppComp: React.FC = () => (
     <LinkComp />
     <div className="app-split">
       <PageComp />
-      <SplitComp />
+      {/* <SplitComp /> */}
     </div>
   </div>
 );

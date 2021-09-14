@@ -1,10 +1,10 @@
 import React from 'react';
-import LinkHeaderComp from './header/LinkHeaderComp';
+import HeaderComp from '../header/HeaderComp';
 import './Link.css';
 
 const LinkComp: React.FC = () => (
   <div className="link">
-    <LinkHeaderComp />
+    <HeaderComp src='Earth.svg' label='Links' />
   </div>
 );
 export default LinkComp;
