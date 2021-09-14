@@ -1,0 +1,20 @@
+.link-list {
+  height: 420px;
+  margin-top: 10px;
+  padding: 4px;
+  width: 100%;
+}
+
+.link-list-title {
+  color: rgb(238, 230, 230);
+  font-size: 17px;
+  margin-left: 5px;
+}
+
+.link-list-container {
+  background-color: rgb(51, 58, 65);
+  border-radius: 20px;
+  height: 95%;
+  margin-top: 4px;
+  width: calc(100% - 8px);
+}
