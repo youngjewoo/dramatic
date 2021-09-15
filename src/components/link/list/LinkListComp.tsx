@@ -1,22 +1,23 @@
 import React from 'react';
+import ResourceModel from '../../../model/resource/ResourceModel';
+import LinkItemComp from '../item/LinkItemComp';
 import './LinkList.css';
 
 interface ILinkListProp {
   title: string;
+  resMap: Map<string, ResourceModel>;
 }
 
-const LinkListComp: React.FC<ILinkListProp> = ({ title }) => (
+const LinkListComp: React.FC<ILinkListProp> = ({ title, resMap }) => (
   <div className="link-list">
     <label className="link-list-title" htmlFor="link-list">
       {title}
     </label>
     <div className="link-list-container">
-      {/* <div className="link-list-container" style={{ backgroundColor: bColor }}> */}
-      {/* <ul>
-        {[].length !== 0 && [].map(resource => {
-          return <LinkItem key={resource.url} />;
-        })}
-      </ul> */}
+      <ul className="link-list-ul">
+        {resMap.size !== 0
+            && [...resMap.values()].map((res) => <LinkItemComp model={res} key={res.getUrl()} />)}
+      </ul>
     </div>
   </div>
 );

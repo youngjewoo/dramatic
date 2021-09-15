@@ -1,0 +1,40 @@
+.link-item {
+  display: flex;
+  transition-property: all;
+  transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+}
+
+.link-item:hover .link-item-border {
+  width: 100%;
+}
+
+.link-item-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  overflow: hidden;
+  padding-right: 4px;
+}
+
+.link-item-label {
+  color: snow;
+  font-weight: bold;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-item-border {
+  border-color: rgba(240, 248, 255, 0.699);
+  border-top: 1px solid;
+  width: 60%;
+}
+
+.link-item-date {
+  color: lightsteelblue;
+  font-size: 8pt;
+  margin-left: auto;
+}

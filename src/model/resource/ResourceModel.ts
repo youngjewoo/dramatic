@@ -1,20 +1,43 @@
 import { boundMethod } from 'autobind-decorator';
 
 class ResourceModel {
-    private url: string;
+  private url: string;
 
-    private title: string;
+  private title: string;
 
-    private img: string;
+  private img: string;
 
-    private favicon: string;
+  private favicon: string;
 
-    constructor() {
-        this.url = '';
-        this.img = '';
-        this.title = '';
-        this.favicon = '';
-    }
+  private creationDate: string;
+
+  constructor(url: string, title: string, img: string, favicon: string, creationDate: string) {
+    this.url = url;
+    this.img = img;
+    this.title = title;
+    this.favicon = favicon;
+    this.creationDate = creationDate;
+  }
+
+  @boundMethod
+  public getUrl(): string {
+    return this.url;
+  }
+
+  @boundMethod
+  public getImg(): string {
+    return this.img;
+  }
+
+  @boundMethod
+  public getTitle(): string {
+    return this.title;
+  }
+
+  @boundMethod
+  public getFavicon(): string {
+    return this.favicon;
+  }
 }
 
 export default ResourceModel;

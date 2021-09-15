@@ -34,8 +34,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
-    "mobx": "^6.3.3",
-    "mobx-react-lite": "^3.2.1",
     "prettier": "^2.4.0",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.2.1",
@@ -48,8 +46,11 @@
   "dependencies": {
     "autobind-decorator": "^2.4.0",
     "lodash": "^4.17.21",
+    "open-graph-scraper": "^4.9.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "mobx": "^6.3.3",
+    "mobx-react-lite": "^3.2.1"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [

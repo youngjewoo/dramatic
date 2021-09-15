@@ -15,6 +15,12 @@
   background-color: rgb(51, 58, 65);
   border-radius: 20px;
   height: 95%;
-  margin-top: 4px;
+  padding-top: 5px; /*Do not use margin because of CSS margin-collapsing*/
   width: calc(100% - 8px);
+}
+
+.link-list-ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
 }
