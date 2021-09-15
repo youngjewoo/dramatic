@@ -10,7 +10,7 @@ interface IHeaderProp {
 }
 
 const HeaderComp: React.FC<IHeaderProp> = ({
-  src, label, fontColor, w = '32px', h = '32px',
+  src, label, fontColor, w, h,
 }) => (
   <div className="header">
     <img src={src} alt="" height={h} width={w} />
@@ -21,8 +21,8 @@ const HeaderComp: React.FC<IHeaderProp> = ({
 );
 
 HeaderComp.defaultProps = {
-  w: '',
-  h: '',
+  w: '32px',
+  h: '32px',
 };
 
 export default HeaderComp;
