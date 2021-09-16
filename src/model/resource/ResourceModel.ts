@@ -38,6 +38,11 @@ class ResourceModel {
   public getFavicon(): string {
     return this.favicon;
   }
+
+  @boundMethod
+  public getDate(): string {
+    return this.creationDate;
+  }
 }
 
 export default ResourceModel;

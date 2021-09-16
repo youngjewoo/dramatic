@@ -28,7 +28,7 @@ class AppStateModel {
         'skin guide',
         '',
         '',
-        new Date().toDateString(),
+        new Date().toISOString().split('T')[0],
       ),
     );
     this.resources.set(
@@ -38,7 +38,7 @@ class AppStateModel {
         'ogs ',
         '',
         '',
-        new Date().toDateString(),
+        new Date().toISOString().split('T')[0],
       ),
     );
     this.resources.set(
@@ -48,7 +48,7 @@ class AppStateModel {
         'What is property',
         '',
         '',
-        new Date().toDateString(),
+        '2018-09-09',
       ),
     );
   }

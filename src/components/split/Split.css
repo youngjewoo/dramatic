@@ -2,5 +2,6 @@
   /* background-color: rgba(0, 173, 241, 0.075); */
   background-color: rgb(42, 48, 54);
   flex-grow: 1;
+  padding: 4px;
   width: 40%;
 }

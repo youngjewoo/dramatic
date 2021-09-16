@@ -1,11 +1,11 @@
 .app {
   display: flex;
   font-family: Arial, sans-serif;
-  height: 100vh;
+  height: auto;
   margin: 0px;
 }
 
-.app-split {
+.app-content {
   display: flex;
   width: 84%;
 }
