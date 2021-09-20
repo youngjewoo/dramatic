@@ -9,9 +9,7 @@ interface IHeaderProp {
   h?: string;
 }
 
-const HeaderComp: React.FC<IHeaderProp> = ({
-  src, label, fontColor, w, h,
-}) => (
+const HeaderComp: React.FC<IHeaderProp> = ({ src, label, fontColor, w, h }) => (
   <div className="header">
     <img src={src} alt="" height={h} width={w} />
     <span className="header-label" style={{ color: fontColor }}>
