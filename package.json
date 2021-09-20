@@ -1,12 +1,15 @@
 {
   "name": "dramatic",
+  "type": "module",
   "version": "1.0.0",
   "description": "Editor can link with other contents",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "nodemon": "nodemon App.js",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -46,9 +49,15 @@
   "dependencies": {
     "autobind-decorator": "^2.4.0",
     "axios": "^0.21.4",
+    "cheerio": "^1.0.0-rc.10",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
     "lodash": "^4.17.21",
     "mobx": "^6.3.3",
     "mobx-react-lite": "^3.2.1",
+    "node-fetch": "^3.0.0",
+    "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },

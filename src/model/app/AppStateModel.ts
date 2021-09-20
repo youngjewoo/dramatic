@@ -7,13 +7,15 @@ class AppStateModel {
 
   private document: string;
 
-  @observable.shallow
+  @observable
   private resources: Map<string, ResourceModel>;
 
-  @observable.shallow
+  @observable
   private sectionViewModel: Map<string, ResourceModel>;
 
   constructor() {
+    // makeObservable(this);
+    // use context style로 바꿔 보기
     this.ui = '';
     this.document = '';
 
@@ -26,7 +28,7 @@ class AppStateModel {
       new ResourceModel(
         'https://tistory.github.io/document-tistory-skin/',
         'skin guide',
-        '',
+        'Earth.svg',
         '',
         new Date().toISOString().split('T')[0],
       ),
@@ -36,7 +38,7 @@ class AppStateModel {
       new ResourceModel(
         'https://balmostory.tistory.com/50',
         'ogs ',
-        '',
+        'Earth.svg',
         '',
         new Date().toISOString().split('T')[0],
       ),
@@ -46,7 +48,7 @@ class AppStateModel {
       new ResourceModel(
         'https://central-library.tistory.com/4',
         'What is property',
-        '',
+        'Earth.svg',
         '',
         '2018-09-09',
       ),
@@ -62,7 +64,11 @@ class AppStateModel {
   public addResource(url: string, resourceModel: ResourceModel): void {
     if (this.resources.has(url) === false) {
       this.resources.set(url, resourceModel);
+      console.log(this.resources.size);
+    } else {
+      console.log('DUPLICATe url');
     }
+    console.log([...this.resources]);
   }
 
   @boundMethod
