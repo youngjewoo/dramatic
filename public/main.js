@@ -3735,18 +3735,12 @@
 
           // bound
           if ((_this$options_ = this.options_) == null ? void 0 : _this$options_.bound) {
-            return this.extend_(adm, key, descriptor, false) === null
-              ? 0
-              : /* Cancel */
-                1;
+            return this.extend_(adm, key, descriptor, false) === null ? 0 : /* Cancel */ 1;
             /* Break */
           } // own
 
           if (source === adm.target_) {
-            return this.extend_(adm, key, descriptor, false) === null
-              ? 0
-              : /* Cancel */
-                2;
+            return this.extend_(adm, key, descriptor, false) === null ? 0 : /* Cancel */ 2;
             /* Continue */
           } // prototype
 
@@ -3859,10 +3853,7 @@
 
           // own
           if (source === adm.target_) {
-            return this.extend_(adm, key, descriptor, false) === null
-              ? 0
-              : /* Cancel */
-                2;
+            return this.extend_(adm, key, descriptor, false) === null ? 0 : /* Cancel */ 2;
             /* Continue */
           } // prototype
           // bound - must annotate protos to support super.flow()
@@ -3871,9 +3862,8 @@
             ((_this$options_ = this.options_) == null ? void 0 : _this$options_.bound) &&
             !isFlow(adm.target_[key])
           ) {
-            if (this.extend_(adm, key, descriptor, false) === null)
-              return 0;
-              /* Cancel */
+            if (this.extend_(adm, key, descriptor, false) === null) return 0;
+            /* Cancel */
           }
 
           if (isFlow(descriptor.value)) {
@@ -3966,10 +3956,7 @@
         }
 
         function make_$3(adm, key, descriptor) {
-          return this.extend_(adm, key, descriptor, false) === null
-            ? 0
-            : /* Cancel */
-              1;
+          return this.extend_(adm, key, descriptor, false) === null ? 0 : /* Cancel */ 1;
           /* Break */
         }
 
@@ -4013,10 +4000,7 @@
         }
 
         function make_$4(adm, key, descriptor) {
-          return this.extend_(adm, key, descriptor, false) === null
-            ? 0
-            : /* Cancel */
-              1;
+          return this.extend_(adm, key, descriptor, false) === null ? 0 : /* Cancel */ 1;
           /* Break */
         }
 
