@@ -1,6 +1,7 @@
 .link-list {
   height: 420px;
   margin-top: 10px;
+  max-height: 420px;
   padding: 4px;
   width: 100%;
 }
@@ -14,9 +15,24 @@
 .link-list-container {
   background-color: rgb(51, 58, 65);
   border-radius: 20px;
-  height: 95%;
+  height: 400px;
+  overflow-y: auto;
   padding-top: 5px; /*Do not use margin because of CSS margin-collapsing*/
   width: calc(100% - 8px);
+}
+
+.link-list-container::-webkit-scrollbar {
+  width: 10px;
+}
+.link-list-container::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  background-color: grey;
+  border-radius: 10px;
+  border: 3px solid transparent;
+}
+.link-list-container::-webkit-scrollbar-track {
+  background-color: #2f3542;
+  border-radius: 10px;
 }
 
 .link-list-ul {

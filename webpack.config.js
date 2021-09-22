@@ -1,7 +1,6 @@
-import path from 'path';
-const __dirname = path.resolve();
+const path = require('path');
 
-export default {
+module.exports = {
   entry: './src/index.tsx',
   devtool: 'inline-source-map',
   mode: 'development',
@@ -9,7 +8,7 @@ export default {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
+        loader: 'babel-loader',
         exclude: /node_modules/,
       },
       {

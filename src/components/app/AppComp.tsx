@@ -1,12 +1,8 @@
-// import axios from 'axios';
-import { observer } from 'mobx-react-lite';
+import axios from 'axios';
 import React from 'react';
-import AppStateModel from '../../model/app/AppStateModel';
-import ResourceModel from '../../model/resource/ResourceModel';
 import LinkComp from '../link/LinkComp';
 import PageComp from '../page/PageComp';
 import SplitComp from '../split/SplitComp';
-
 import './App.css';
 
 function isValidURL(str: string): boolean {
@@ -22,38 +18,47 @@ function isValidURL(str: string): boolean {
   return pattern.test(str);
 }
 
-function pasteHandler(e: React.ClipboardEvent): void {
-  const url = e.clipboardData?.getData('text');
+const AppComp: React.FC = () => {
+  // const appState = useAppState();
+  function pasteHandler(e: React.ClipboardEvent): void {
+    const url = e.clipboardData?.getData('text');
 
-  if (url && isValidURL(url)) {
-    // axios.get('http://localhost:9000/paste')
-    //   .then(response => {
-    //     console.log('SUCCESS', response.data);
-    //   });
-    const stub = {
-      title: 'naver',
-      description: ' ~~~~ ',
-      image: 'https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png',
-      url: 'https://www.naver.com',
-      icon: '/favicon.ico?1',
-    };
-    console.log(url);
-    AppStateModel.addResource(
-      stub.url,
-      new ResourceModel(stub.url, stub.title, stub.image, stub.icon, new Date().toISOString()),
-    );
-  } else {
-    console.log('INVALID URL : ', url);
+    if (url && isValidURL(url)) {
+      // tag?[url] 날리고
+      axios.get('http://localhost:9000/paste').then((response) => {
+        console.log('SUCCESS', response.data);
+        // appState.addResource(
+        //   stub.url,
+        //   new ResourceModel(stub.url, stub.title,
+        // stub.image, stub.icon, new Date().toISOString()),
+        // );
+      });
+      // const stub = {
+      //   title: 'naver',
+      //   description: ' ~~~~ ',
+      //   image: 'https://s.pstatic.net/static/ww
+      // w/mobile/edit/2016/0705/mobile_212852414260.png',
+      //   url: 'https://www.naver.com',
+      //   icon: '/favicon.ico?1',
+      // };
+      // appState.addResource(
+      //   stub.url,
+      //   new ResourceModel(stub.url, stub.title, stub.image, stub.icon, new Date().toISOString()),
+      // );
+    } else {
+      console.log('INVALID URL : ', url);
+    }
   }
-}
 
-const AppComp: React.FC = () => (
-  <div className="app" onPaste={pasteHandler}>
-    <LinkComp />
-    <div className="app-content">
-      <PageComp />
-      <SplitComp />
+  return (
+    <div className="app" onPaste={pasteHandler}>
+      <LinkComp />
+      <div className="app-content">
+        <PageComp />
+        <SplitComp />
+      </div>
     </div>
-  </div>
-);
-export default observer(AppComp);
+  );
+};
+
+export default AppComp;

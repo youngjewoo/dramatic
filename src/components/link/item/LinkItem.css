@@ -1,4 +1,5 @@
 .link-item {
+  animation: expand 0.5s ease-in-out;
   border-radius: 10px;
   display: flex;
   transition-property: all;
@@ -34,7 +35,7 @@
 
 .link-item-border {
   border-top: solid 1px rgba(248, 248, 255, 0.658);
-  width: 50%;
+  width: 80%;
   margin: 6px auto 6px auto;
   transition-property: all;
   transition-duration: 0.5s;
@@ -45,4 +46,19 @@
   color: lightsteelblue;
   font-size: 8pt;
   margin-left: auto;
+}
+
+.link-item-img {
+  border-radius: 10px;
+  height: 58px;
+  padding: 6px;
+  width: 58px;
+}
+
+@keyframes expand {
+  from {
+    transform: scale(0);
+    opacity: 0;
+    background: #5470b0;
+  }
 }

@@ -24,6 +24,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/paste', (req, res) => {
+  // tag?[url] 로 들어온 url 긁어오기
   fetch('https://www.naver.com')
     .then((result) => result.text())
     .then((html) => {
