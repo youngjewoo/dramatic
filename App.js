@@ -44,8 +44,7 @@ app.get('/paste', (req, res) => {
       const image =
         $('meta[property="og:image"]').attr('content') ||
         $('meta[property="og:image:url"]').attr('content');
-      let icon =
-        $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href');
+      let icon = $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href');
       console.log(title, description, url, image, icon);
       if (icon.slice(0, 4) !== 'http') {
         icon = `${urlObj.protocol}:/${urlObj.hostname}${icon}`;
