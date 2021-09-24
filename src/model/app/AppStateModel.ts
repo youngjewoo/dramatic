@@ -1,14 +1,13 @@
 import { boundMethod } from 'autobind-decorator';
 import { action, makeAutoObservable, observable } from 'mobx';
 import moment from 'moment';
+import { v4 } from 'uuid';
 import ResourceModel from '../resource/ResourceModel';
 
 export default class AppStateModel {
-  public test: number;
+  private isSplitViewOn: boolean;
 
-  private ui: string;
-
-  private document: string;
+  private documentId: string;
 
   private resources: Set<string>;
 
@@ -21,11 +20,8 @@ export default class AppStateModel {
   constructor() {
     makeAutoObservable(this);
 
-    this.test = 1;
-
-    // use context style로 바꿔 보기 CONTEXT화.. 필수구나
-    this.ui = '';
-    this.document = '';
+    this.isSplitViewOn = false;
+    this.documentId = v4();
 
     this.resources = new Set();
     this.resourceViewModel = [
@@ -45,14 +41,14 @@ export default class AppStateModel {
       ),
       new ResourceModel(
         'https://central-library.tistory.com/4',
-        'What is property',
+        'BMW GT 6 the best family touring car',
         'Earth.svg',
         '',
         '2018-09-09T00:22:11+09:00',
       ),
       new ResourceModel(
         'https://central-library.tistory.com/44',
-        'What is property',
+        'What is property asdasdasd',
         'Earth.svg',
         '',
         '2018-09-09T00:22:11+09:00',
@@ -65,6 +61,11 @@ export default class AppStateModel {
     this.resources.add('https://balmostory.tistory.com/50');
     this.resources.add('https://central-library.tistory.com/4');
     this.resources.add('https://central-library.tistory.com/44');
+  }
+
+  @boundMethod
+  public isSplitOn(): boolean {
+    return this.isSplitViewOn;
   }
 
   @boundMethod
@@ -86,18 +87,35 @@ export default class AppStateModel {
       if (insertIdx !== -1) {
         this.resourceViewModel.splice(insertIdx, 0, resourceModel);
       }
+    }
+  }
+
+  @action.bound
+  public isDuplicate(url: string): boolean {
+    return this.resources.has(url);
+  }
+
+  @action.bound
+  public replaceTempUrl(url: string): void {
+    if (this.resources.has('TEMP')) {
+      this.resources.delete('TEMP');
+      this.resources.add(url);
     } else {
-      // console.log('DUPLICATE url');
+      console.log('Invalid status');
+    }
+  }
+
+  @action.bound
+  public removeTempModel(): void {
+    this.resources.delete('TEMP');
+    const idx = this.resourceViewModel.findIndex((model) => model.getUrl() === 'TEMP');
+    if (idx !== -1) {
+      this.resourceViewModel.splice(idx, 1);
     }
   }
 
   @boundMethod
   public getSectionModel(): Array<ResourceModel> {
     return this.sectionViewModel;
-  }
-
-  @action.bound
-  public inc(): void {
-    this.test += 1;
   }
 }

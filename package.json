@@ -1,6 +1,5 @@
 {
   "name": "dramatic",
-  "type": "module",
   "version": "1.0.0",
   "description": "Editor can link with other contents",
   "main": "index.js",
@@ -58,6 +57,7 @@
     "webpack-dev-server": "^4.2.0"
   },
   "dependencies": {
+    "@types/uuid": "^8.3.1",
     "autobind-decorator": "^2.4.0",
     "axios": "^0.21.4",
     "cheerio": "^1.0.0-rc.10",
@@ -71,7 +71,8 @@
     "node-fetch": "^3.0.0",
     "path": "^0.12.7",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "uuid": "^8.3.2"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [

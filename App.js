@@ -24,8 +24,12 @@ app.get('/', function (req, res) {
 });
 
 app.get('/paste', (req, res) => {
+  const targetUrl = req.url.split('?')[1];
+  const urlObj = new URL(targetUrl);
+
+  console.log(targetUrl);
   // tag?[url] 로 들어온 url 긁어오기
-  fetch('https://www.naver.com')
+  fetch(targetUrl)
     .then((result) => result.text())
     .then((html) => {
       const $ = cheerio.load(html);
@@ -40,9 +44,12 @@ app.get('/paste', (req, res) => {
       const image =
         $('meta[property="og:image"]').attr('content') ||
         $('meta[property="og:image:url"]').attr('content');
-      const icon =
+      let icon =
         $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href');
       console.log(title, description, url, image, icon);
+      if (icon.slice(0, 4) !== 'http') {
+        icon = `${urlObj.protocol}:/${urlObj.hostname}${icon}`;
+      }
       res.send({
         title,
         description,

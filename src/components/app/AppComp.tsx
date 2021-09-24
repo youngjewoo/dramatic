@@ -1,8 +1,12 @@
 import axios from 'axios';
 import React from 'react';
+import moment from 'moment';
+import ResourceModel from '../../model/resource/ResourceModel';
 import LinkComp from '../link/LinkComp';
 import PageComp from '../page/PageComp';
 import SplitComp from '../split/SplitComp';
+import useAppState from '../../hooks/useAppState';
+
 import './App.css';
 
 function isValidURL(str: string): boolean {
@@ -19,34 +23,52 @@ function isValidURL(str: string): boolean {
 }
 
 const AppComp: React.FC = () => {
-  // const appState = useAppState();
-  function pasteHandler(e: React.ClipboardEvent): void {
-    const url = e.clipboardData?.getData('text');
+  const appState = useAppState();
 
-    if (url && isValidURL(url)) {
+  function pasteHandler(e: React.ClipboardEvent): void {
+    const copiedUrl = e.clipboardData?.getData('text');
+
+    if (copiedUrl && isValidURL(copiedUrl) && !appState.isDuplicate(copiedUrl)) {
+      // 일단 dummy 모델 추가
+      const tempModel = new ResourceModel('TEMP', '...', 'Loading.gif', '', moment().format());
+      appState.addResource('TEMP', tempModel);
+
       // tag?[url] 날리고
-      axios.get('http://localhost:9000/paste').then((response) => {
+      axios.get(`http://localhost:9000/paste?${copiedUrl}`).then((response) => {
         console.log('SUCCESS', response.data);
-        // appState.addResource(
-        //   stub.url,
-        //   new ResourceModel(stub.url, stub.title,
-        // stub.image, stub.icon, new Date().toISOString()),
-        // );
+        const ogData = response.data;
+        if (ogData.url === undefined || appState.isDuplicate(copiedUrl)) {
+          appState.removeTempModel();
+          return;
+        }
+        // URL
+        tempModel.setUrl(copiedUrl);
+        appState.replaceTempUrl(copiedUrl);
+
+        // Title
+        if (ogData.title) {
+          tempModel.setTitle(ogData.title);
+        }
+        // Image
+        if (ogData.image) {
+          tempModel.setImg(ogData.image);
+        } else if (ogData.image === undefined && ogData.favicon) {
+          tempModel.setImg(ogData.favicon);
+        } else {
+          tempModel.setImg('NoImage.svg');
+        }
+        // Favicon
+        if (ogData.icon) {
+          if (ogData.icon.slice(0, 4) === 'http') {
+            tempModel.setFavicon(ogData.icon);
+          } else {
+            tempModel.setFavicon(`${ogData.url}${ogData.icon}`);
+          }
+        }
+        console.log(tempModel);
       });
-      // const stub = {
-      //   title: 'naver',
-      //   description: ' ~~~~ ',
-      //   image: 'https://s.pstatic.net/static/ww
-      // w/mobile/edit/2016/0705/mobile_212852414260.png',
-      //   url: 'https://www.naver.com',
-      //   icon: '/favicon.ico?1',
-      // };
-      // appState.addResource(
-      //   stub.url,
-      //   new ResourceModel(stub.url, stub.title, stub.image, stub.icon, new Date().toISOString()),
-      // );
     } else {
-      console.log('INVALID URL : ', url);
+      console.log('INVALID URL : ', copiedUrl);
     }
   }
 
@@ -55,7 +77,7 @@ const AppComp: React.FC = () => {
       <LinkComp />
       <div className="app-content">
         <PageComp />
-        <SplitComp />
+        {appState.isSplitOn() && <SplitComp />}
       </div>
     </div>
   );
