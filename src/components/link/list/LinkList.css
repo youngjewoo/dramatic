@@ -1,7 +1,6 @@
 .link-list {
-  height: 420px;
+  /* height: 420px; */
   margin-top: 10px;
-  max-height: 420px;
   padding: 4px;
   width: 100%;
 }
@@ -15,8 +14,9 @@
 .link-list-container {
   background-color: rgb(51, 58, 65);
   border-radius: 20px;
-  height: 400px;
-  overflow-y: auto;
+  height: 360px;
+  margin-top: 12px;
+  overflow: auto;
   padding-top: 5px; /*Do not use margin because of CSS margin-collapsing*/
   width: calc(100% - 8px);
 }

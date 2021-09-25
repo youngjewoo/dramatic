@@ -1,24 +1,47 @@
+import { boundMethod } from 'autobind-decorator';
 import { makeAutoObservable, observable } from 'mobx';
+
+interface IImageProps {
+  url: string;
+  width: string;
+  height: string;
+  links?: string[];
+}
 
 export default class ImageModel {
   @observable
-  public links: string[];
+  private links: string[];
 
   @observable
-  public width: string;
+  private width: string;
 
   @observable
-  public height: string;
+  private height: string;
 
   @observable
-  public url: string;
+  private url: string;
 
-  constructor() {
+  constructor(params: IImageProps) {
     makeAutoObservable(this);
 
-    this.links = [];
-    this.url = '';
-    this.width = '0';
-    this.height = '0';
+    this.url = params.url;
+    this.width = params.width || '0';
+    this.height = params.height || '0';
+    this.links = params.links || [];
+  }
+
+  @boundMethod
+  public getUrl(): string {
+    return this.url;
+  }
+
+  @boundMethod
+  public getHeight(): string {
+    return this.height;
+  }
+
+  @boundMethod
+  public getWidth(): string {
+    return this.width;
   }
 }

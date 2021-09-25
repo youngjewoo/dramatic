@@ -12,11 +12,11 @@ export default class ParagraphModel {
   @observable
   public runs: RunModel[];
 
-  constructor() {
+  constructor(runs: RunModel[]) {
     makeAutoObservable(this);
 
     this.links = [];
     this.isBullet = false;
-    this.runs = [];
+    this.runs = runs;
   }
 }

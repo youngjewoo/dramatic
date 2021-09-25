@@ -1,6 +1,13 @@
 import { makeAutoObservable, observable } from 'mobx';
 
-export default class ParagraphModel {
+interface IRunProps {
+  text: string;
+  fontColor?: string;
+  fontSize?: string;
+  isBold?: boolean;
+}
+
+export default class RunModel {
   @observable
   public fontColor: string;
 
@@ -13,12 +20,12 @@ export default class ParagraphModel {
   @observable
   public text: string;
 
-  constructor() {
+  constructor(params: IRunProps) {
     makeAutoObservable(this);
 
-    this.fontColor = 'black';
-    this.fontSize = '16px';
-    this.isBold = false;
-    this.text = '';
+    this.text = params.text;
+    this.fontColor = params.fontColor || 'black';
+    this.fontSize = params.fontSize || '16px';
+    this.isBold = params.isBold === undefined ? false : params.isBold;
   }
 }

@@ -1,7 +1,8 @@
 .app {
+  background-color: aqua;
   display: flex;
   font-family: Arial, sans-serif;
-  height: auto;
+  height: 100vh;
   margin: 0px;
 }
 

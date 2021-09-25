@@ -1,5 +1,6 @@
 .page {
-  background-color: rgb(240, 239, 238);
+  background-color: rgb(225, 226, 223);
+  height: calc(100% - 8px);
   flex-grow: 1;
   padding: 4px;
 }

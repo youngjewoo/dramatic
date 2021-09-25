@@ -2,7 +2,9 @@ import { boundMethod } from 'autobind-decorator';
 import { action, makeAutoObservable, observable } from 'mobx';
 import moment from 'moment';
 import { v4 } from 'uuid';
+import DocumentModel from '../document/DocumentModel';
 import ResourceModel from '../resource/ResourceModel';
+import documentModelMock from '../document/DocumentModelMock';
 
 export default class AppStateModel {
   private isSplitViewOn: boolean;
@@ -16,6 +18,9 @@ export default class AppStateModel {
 
   @observable
   private sectionViewModel: Array<ResourceModel>;
+
+  @observable
+  private documentModel: DocumentModel;
 
   constructor() {
     makeAutoObservable(this);
@@ -53,6 +58,20 @@ export default class AppStateModel {
         '',
         '2018-09-09T00:22:11+09:00',
       ),
+      new ResourceModel(
+        'https://central-library.tistory.com/44',
+        'What is property asdasdasd',
+        'Earth.svg',
+        '',
+        '2017-09-09T00:22:11+09:00',
+      ),
+      new ResourceModel(
+        'https://central-library.tistory.com/44',
+        'What is property asdasdasd',
+        'Earth.svg',
+        '',
+        '2016-09-09T00:22:11+09:00',
+      ),
     ];
     this.sectionViewModel = [];
 
@@ -61,6 +80,8 @@ export default class AppStateModel {
     this.resources.add('https://balmostory.tistory.com/50');
     this.resources.add('https://central-library.tistory.com/4');
     this.resources.add('https://central-library.tistory.com/44');
+
+    this.documentModel = documentModelMock;
   }
 
   @boundMethod
@@ -117,5 +138,10 @@ export default class AppStateModel {
   @boundMethod
   public getSectionModel(): Array<ResourceModel> {
     return this.sectionViewModel;
+  }
+
+  @boundMethod
+  public getDocument(): DocumentModel {
+    return this.documentModel;
   }
 }

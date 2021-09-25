@@ -1,6 +1,20 @@
 .content {
   background-color: rgb(255, 255, 255);
-  margin: 44px auto;
-  min-height: 820px;
+  margin: 44px auto 20px;
+  height: calc(75% - 8px);
+  /* height: 700px; */
+  padding: 60px 60px 60px 60px;
   width: 720px;
+  overflow-y: auto;
+}
+.content::-webkit-scrollbar {
+  width: 10px;
+}
+.content::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  background-color: rgb(104, 99, 99);
+  border: 2px solid transparent;
+}
+.content::-webkit-scrollbar-track {
+  background-color: #dcdee4;
 }
