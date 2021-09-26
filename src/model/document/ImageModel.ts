@@ -44,4 +44,9 @@ export default class ImageModel {
   public getWidth(): string {
     return this.width;
   }
+
+  @boundMethod
+  public getLinks(): string[] {
+    return this.links;
+  }
 }

@@ -6,7 +6,7 @@ import ImageModel from './ImageModel';
 import LinkModel from './LinkModel';
 import ParagraphModel from './ParagraphModel';
 
-type ContentModel = ParagraphModel | ImageModel | BreakLineModel | LinkModel;
+export type ContentModel = ParagraphModel | ImageModel | BreakLineModel | LinkModel;
 
 export default class DocumentModel {
   @observable

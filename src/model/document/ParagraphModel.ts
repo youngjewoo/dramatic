@@ -1,22 +1,29 @@
-// import { boundMethod } from 'autobind-decorator';
-import { makeAutoObservable, observable } from 'mobx';
+import { boundMethod } from 'autobind-decorator';
+import { computed, makeAutoObservable, observable } from 'mobx';
 import RunModel from './RunModel';
 
 export default class ParagraphModel {
   @observable
-  public links: string[];
-
-  @observable
-  public isBullet: boolean;
+  private links: string[];
 
   @observable
   public runs: RunModel[];
 
-  constructor(runs: RunModel[]) {
+  constructor(runs: RunModel[], links?: string[]) {
     makeAutoObservable(this);
 
-    this.links = [];
-    this.isBullet = false;
     this.runs = runs;
+    this.links = links || [];
+  }
+
+  @computed
+  @boundMethod
+  public getText(): string {
+    return this.runs.reduce((acc, val) => acc + val.text, '');
+  }
+
+  @boundMethod
+  public getLinks(): string[] {
+    return this.links;
   }
 }

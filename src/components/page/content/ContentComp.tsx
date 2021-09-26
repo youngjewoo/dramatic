@@ -17,30 +17,40 @@ const ContentComp: React.FC = () => {
     marginTop: 10,
   };
   return (
-    <div className="content">
-      <img src="Penguin.png" alt="" height="72px" width="72px" />
-      <p style={titleStyle}>개발자 도구로 보는 CRP</p>
-      {doc.map((model) => {
-        if (model instanceof ParagraphModel) {
-          return <ParaComp model={model} />;
-        }
-        if (model instanceof ImageModel) {
-          const imgStyle: React.CSSProperties = {
-            display: 'block',
-            height: model.getHeight(),
-            // margin: 'auto',
-            width: model.getWidth(),
-          };
-          return <img style={imgStyle} src={model.getUrl()} alt="" />;
-        }
-        if (model instanceof BreakLineModel) {
-          return <br />;
-        }
-        if (model instanceof LinkModel) {
-          return <a href={model.getUrl()}>{model.getLabel()}</a>;
-        }
-        return <></>;
-      })}
+    <div className="content-wrapper">
+      <div className="content">
+        <img src="Penguin.png" alt="" height="72px" width="72px" />
+        <p style={titleStyle}>개발자 도구로 보는 CRP</p>
+        {doc.map((model, idx) => {
+          if (model instanceof ParagraphModel) {
+            return <ParaComp model={model} key={idx.toString()} />;
+          }
+          if (model instanceof ImageModel) {
+            const imgStyle: React.CSSProperties = {
+              display: 'block',
+              height: model.getHeight(),
+              width: model.getWidth(),
+            };
+            return <img style={imgStyle} src={model.getUrl()} alt="" key={idx.toString()} />;
+          }
+          if (model instanceof BreakLineModel) {
+            return <br key={idx.toString()} />;
+          }
+          if (model instanceof LinkModel) {
+            return (
+              <a
+                href={model.getUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={idx.toString()}
+              >
+                {model.getLabel()}
+              </a>
+            );
+          }
+          return <></>;
+        })}
+      </div>
     </div>
   );
 };
